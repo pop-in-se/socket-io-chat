@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./logic.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <ul id="messages"></ul>
+
+    <div class="inputContainer">
+        <input id="message" autocomplete="off" type="text" />
+        <button onclick="sendMessage()">Skicka</button>
+    </div>
+
+</body>
+</html>

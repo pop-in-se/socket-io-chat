@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: 1em Arial, Helvetica, sans-serif;
+}
+
+.inputContainer {
+    background-color: #7a7a7a;
+    padding: 0.2em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.inputContainer input {
+    border: 0;
+    padding: 0.5em;
+    width: 80%;
+    margin: 0.35em;
+    border-radius: 0.5em;
+}
+.inputContainer button {
+    width: 9%;
+    background: #ffffff;
+    border: none;
+    padding: 0.5em;
+    text-align: center;
+    border-radius: 0.5em;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messages li {
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    margin: 0.35em;
+    width: 50%;
+    border: #000000 0.1em solid;
+}
+
+#messages li:nth-child(odd) {
+    background-color: #e4e4e4;
+}
