@@ -54,3 +54,16 @@ p {
 #messages li:nth-child(odd) {
     background-color: #e4e4e4; 
 }
+
+.feedback {
+    position: absolute;
+    top: -25px;
+    left: 25px;
+    color: #FFF;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.feedback i {
+    color: #E6BB46;
+}
