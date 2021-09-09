@@ -1,5 +1,9 @@
 let socket = io()
 
+/* var typing=false;
+var timeout=undefined;
+var user; */
+
 const userName = prompt("What is your name?"); 
 if (userName) { 
     socket.emit('new-user', userName)
@@ -8,7 +12,7 @@ if (userName) {
 }
 
 
-
+        // feed
 socket.on('message', incoming => {
     const list = document.getElementById("messages")
     let listItem = document.createElement("li")
@@ -16,6 +20,15 @@ socket.on('message', incoming => {
     list.appendChild(listItem)
     window.scrollTo(0, document.body.scrollHeight);
 })
+
+socket.on('user typing', ({ userName, typers }) => {
+    const feedback = document.getElementById("messages")
+    let pItem = document.createElement("p")
+    pItem.innerText = typers `<i>${userName}</i> is typing`;
+    feedback.appendChild(pItem)
+});
+
+//Användare ansluter
 
 socket.on('user-connected', userName => {
     const list = document.getElementById("messages")
@@ -25,6 +38,8 @@ socket.on('user-connected', userName => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
+//Användare lämnar
+
 socket.on('user-disconnected', userName => {
     const list = document.getElementById("messages")
     let pItem = document.createElement("p")
@@ -32,6 +47,8 @@ socket.on('user-disconnected', userName => {
     list.appendChild(pItem)
     window.scrollTo(0, document.body.scrollHeight);
 })
+
+//Skicka meddelande
 
   function sendMessage() {
     const input = document.getElementById("message")
