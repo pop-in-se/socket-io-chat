@@ -8,21 +8,27 @@ body {
     font: 1em Arial, Helvetica, sans-serif;
 }
 
-.inputContainer {
+p {
+    padding: 0.35em 0.35em;
+    margin: 0.35em;
+    font-size: 0.85em;
+}
+
+#inputContainer {
     background-color: #7a7a7a;
     padding: 0.2em;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-.inputContainer input {
+#inputContainer input {
     border: 0;
     padding: 0.5em;
     width: 80%;
     margin: 0.35em;
     border-radius: 0.5em;
 }
-.inputContainer button {
+#inputContainer button {
     width: 9%;
     background: #ffffff;
     border: none;
@@ -46,5 +52,5 @@ body {
 }
 
 #messages li:nth-child(odd) {
-    background-color: #e4e4e4;
+    background-color: #e4e4e4; 
 }
