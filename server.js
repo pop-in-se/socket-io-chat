@@ -7,15 +7,25 @@ const port = 3000
 
 app.use(express.static('public'))
 
+const users = {}
+
 io.on('connection', (socket) => {
     console.log("User connected")
-
-    socket.on("message", (incoming) => {
+    
+    socket.on("new-user", userName => {
+        users[socket.id] = userName
+        socket.broadcast.emit('user-connected', userName)
+    })
+   
+    socket.on("message", incoming => {
         io.emit('message', incoming)
     })
+    
 
     socket.on("disconnect", () => {
-        console.log("User disconnected")
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+        /* console.log("User disconnected") */
     })
 })
 
