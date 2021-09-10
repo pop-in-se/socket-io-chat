@@ -1,4 +1,6 @@
 let socket = io()
+const typeInput = document.getElementById('message')
+const isTyping = document.getElementById('isTyping')
 
 /* var typing=false;
 var timeout=undefined;
@@ -12,8 +14,12 @@ if (userName) {
 }
 
 
-        // feed
+
+// Skicka meddelande. incoming = data. messages = ul
+
+
 socket.on('message', incoming => {
+    isTyping.innerText = ""
     const list = document.getElementById("messages")
     let listItem = document.createElement("li")
     listItem.innerText = incoming.userName + ": " + incoming.message
@@ -21,12 +27,21 @@ socket.on('message', incoming => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
-socket.on('user typing', ({ userName, typers }) => {
-    const feedback = document.getElementById("messages")
-    let pItem = document.createElement("p")
-    pItem.innerText = typers `<i>${userName}</i> is typing`;
-    feedback.appendChild(pItem)
-});
+
+
+//Användare skriver meddelande
+
+socket.on('typing', incoming =>  {
+    isTyping.innerText = incoming.userName + ' is typing ...';
+})
+
+//keypress-lyssnare
+
+typeInput.addEventListener('keypress', function() {
+        socket.emit('typing', { userName, message });
+})
+
+
 
 //Användare ansluter
 
@@ -50,9 +65,14 @@ socket.on('user-disconnected', userName => {
 
 //Skicka meddelande
 
-  function sendMessage() {
+
+function sendMessage() {
     const input = document.getElementById("message")
     const message = input.value
     input.value = ""
     socket.emit('message', { userName, message })
 }
+// message = chat
+
+
+

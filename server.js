@@ -10,6 +10,7 @@ app.use(express.static('public'))
 const users = {}
 const typers = {}
 
+
 io.on('connection', (socket) => {
     console.log("User connected")
     
@@ -23,27 +24,19 @@ io.on('connection', (socket) => {
     // skicka meddelande
 
     socket.on("message", incoming => {
-        delete typers[socket.id];   
-        io.emit('message', incoming)
-    })
-    
-    //Användare skriver
 
-    socket.on('user typing', () => {
-        typers[socket.id] = 1;
-    
-        socket.broadcast.emit('user typing', {
-            user: users[socket.id].userName,
-            typers: Object.keys(typers).length
-        })
+        io.emit('message', incoming )
     })
+    
+    //Användare skriver meddelande
 
-    socket.on('user stopped typing', () => {
-        delete typers[socket.id];
-    
-        socket.broadcast.emit('user stopped typing', Object.keys(typers).length);
-    })
-    
+    socket.on('typing', incoming => {
+        socket.broadcast.emit('typing', incoming);
+     })
+
+
+
+
     // Användare lämnar
 
     socket.on("disconnect", () => {

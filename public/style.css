@@ -29,7 +29,7 @@ p {
     border-radius: 0.5em;
 }
 #inputContainer button {
-    width: 9%;
+    width: fit-content;
     background: #ffffff;
     border: none;
     padding: 0.5em;
@@ -55,15 +55,13 @@ p {
     background-color: #e4e4e4; 
 }
 
-.feedback {
+
+#isTyping {
     position: absolute;
-    top: -25px;
-    left: 25px;
-    color: #FFF;
+    top: -24px;
+    left: 24px;
     font-style: italic;
-    font-size: 16px;
+    font-size: 0.85em;
+    color: #7a7a7a;
 }
 
-.feedback i {
-    color: #E6BB46;
-}
