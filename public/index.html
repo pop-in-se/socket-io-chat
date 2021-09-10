@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.io chat</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="./logic.js"></script>
+    <script defer src="./logic.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,16 +15,12 @@
 
     <div id="inputContainer">
         
-        <input id="message" autocomplete="off" type="text" />
+        <span id="isTyping"></span>
+        <input id="message" autocomplete="off" type="text" autofocus/>
         <button onclick="sendMessage()">Skicka</button>
     
     </div>
 
-<!--     <div id="message-container"></div>
-    <form id="send-container">
-      <input type="text" id="message-input">
-      <button type="submit" id="send-button">Send</button>
-    </form> -->
 
 </body>
 </html>

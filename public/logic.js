@@ -1,4 +1,6 @@
 let socket = io()
+const typeInput = document.getElementById('message')
+const isTyping = document.getElementById('isTyping')
 
 const userName = prompt("What is your name?"); 
 if (userName) { 
@@ -8,14 +10,32 @@ if (userName) {
 }
 
 
+// Skicka meddelande. incoming = data. messages = ul
 
 socket.on('message', incoming => {
+    isTyping.innerText = ""
     const list = document.getElementById("messages")
     let listItem = document.createElement("li")
     listItem.innerText = incoming.userName + ": " + incoming.message
     list.appendChild(listItem)
     window.scrollTo(0, document.body.scrollHeight);
 })
+
+
+//Användare skriver meddelande
+
+socket.on('typing', incoming =>  {
+    isTyping.innerText = incoming.userName + ' is typing ...';
+})
+
+//keypress-lyssnare
+
+typeInput.addEventListener('keypress', function() {
+        socket.emit('typing', { userName, message });
+})
+
+
+//Användare ansluter
 
 socket.on('user-connected', userName => {
     const list = document.getElementById("messages")
@@ -25,6 +45,8 @@ socket.on('user-connected', userName => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
+//Användare lämnar
+
 socket.on('user-disconnected', userName => {
     const list = document.getElementById("messages")
     let pItem = document.createElement("p")
@@ -33,9 +55,15 @@ socket.on('user-disconnected', userName => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
-  function sendMessage() {
+//Skicka meddelande
+
+function sendMessage() {
     const input = document.getElementById("message")
     const message = input.value
     input.value = ""
     socket.emit('message', { userName, message })
 }
+// message = chat
+
+
+
