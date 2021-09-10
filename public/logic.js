@@ -2,6 +2,10 @@ let socket = io()
 const typeInput = document.getElementById('message')
 const isTyping = document.getElementById('isTyping')
 
+/* var typing=false;
+var timeout=undefined;
+var user; */
+
 const userName = prompt("What is your name?"); 
 if (userName) { 
     socket.emit('new-user', userName)
@@ -10,7 +14,9 @@ if (userName) {
 }
 
 
+
 // Skicka meddelande. incoming = data. messages = ul
+
 
 socket.on('message', incoming => {
     isTyping.innerText = ""
@@ -20,6 +26,7 @@ socket.on('message', incoming => {
     list.appendChild(listItem)
     window.scrollTo(0, document.body.scrollHeight);
 })
+
 
 
 //Användare skriver meddelande
@@ -33,6 +40,7 @@ socket.on('typing', incoming =>  {
 typeInput.addEventListener('keypress', function() {
         socket.emit('typing', { userName, message });
 })
+
 
 
 //Användare ansluter
@@ -56,6 +64,7 @@ socket.on('user-disconnected', userName => {
 })
 
 //Skicka meddelande
+
 
 function sendMessage() {
     const input = document.getElementById("message")

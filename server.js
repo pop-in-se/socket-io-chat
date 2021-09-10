@@ -8,13 +8,14 @@ const port = 3000
 app.use(express.static('public'))
 
 const users = {}
+const typers = {}
 
 
 io.on('connection', (socket) => {
     console.log("User connected")
     
     // Användare ansluter
-    
+
     socket.on("new-user", userName => {
         users[socket.id] = userName
         socket.broadcast.emit('user-connected', userName)
@@ -23,6 +24,7 @@ io.on('connection', (socket) => {
     // skicka meddelande
 
     socket.on("message", incoming => {
+
         io.emit('message', incoming )
     })
     
@@ -34,6 +36,7 @@ io.on('connection', (socket) => {
 
 
 
+
     // Användare lämnar
 
     socket.on("disconnect", () => {
@@ -41,7 +44,7 @@ io.on('connection', (socket) => {
         delete users[socket.id]
         /* console.log("User disconnected") */
     })
-})
+});
 
 
 http.listen(port, () => console.log("Listening on port " + port))

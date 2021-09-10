@@ -55,6 +55,7 @@ p {
     background-color: #e4e4e4; 
 }
 
+
 #isTyping {
     position: absolute;
     top: -24px;
@@ -63,3 +64,4 @@ p {
     font-size: 0.85em;
     color: #7a7a7a;
 }
+
