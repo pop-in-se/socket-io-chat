@@ -5,29 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.io chat</title>
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-     crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="./logic.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- feed -->
-    <ul id="messages"></ul>
-
-    
-    <div id="inputContainer">
         
-
-        <span id="isTyping"></span>
-        <input id="message" autocomplete="off" type="text" autofocus/>
-
-        <button onclick="sendMessage()">Skicka</button>
-    
+    <div class="window">
+        <div class="container">
+            <div class="messageContainer">
+                <ul id="messages" class="joke"></ul>
+            </div>
+            <div id="emojiContainer">
+                <button id="emojibutton">😊</button>
+                <button id="emojibutton">😉</button>
+                <button id="emojibutton">🥴</button>
+                <button id="emojibutton" class="getJoke">🤡</button>
+            </div>
+            <div class="sendMessage">
+                <div id="inputContainer">
+                    <input id="message" autocomplete="off" type="text" autofocus/>
+                    <button onclick="sendMessage()"><u>S</u>end</button>
+                </div>
+            </div>
+        <div id="typingContainer">
+            <span id="isTyping"></span>
+        </div>
+        </div>
     </div>
-
-
 </body>
 </html>

@@ -8,14 +8,25 @@ const port = 3000
 app.use(express.static('public'))
 
 const users = {}
-const typers = {}
+
+
+/* app.get('/joke', function(req, res){
+    get('http://icanhazdadjoke.com/')
+    .then(function (response) {
+        res.send(response.data.joke)
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+}); */
+
 
 
 io.on('connection', (socket) => {
     console.log("User connected")
     
     // Användare ansluter
-
+    
     socket.on("new-user", userName => {
         users[socket.id] = userName
         socket.broadcast.emit('user-connected', userName)
@@ -24,8 +35,13 @@ io.on('connection', (socket) => {
     // skicka meddelande
 
     socket.on("message", incoming => {
-
         io.emit('message', incoming )
+    })
+
+    // skicka joke
+
+    socket.on("joke", incomingJoke => {
+        io.emit('joke', incomingJoke )
     })
     
     //Användare skriver meddelande
@@ -34,9 +50,6 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('typing', incoming);
      })
 
-
-
-
     // Användare lämnar
 
     socket.on("disconnect", () => {
@@ -44,7 +57,7 @@ io.on('connection', (socket) => {
         delete users[socket.id]
         /* console.log("User disconnected") */
     })
-});
+})
 
 
 http.listen(port, () => console.log("Listening on port " + port))
