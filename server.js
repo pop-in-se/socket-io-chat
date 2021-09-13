@@ -21,6 +21,7 @@ const users = {}
 }); */
 
 
+
 io.on('connection', (socket) => {
     console.log("User connected")
     
@@ -48,8 +49,6 @@ io.on('connection', (socket) => {
     socket.on('typing', incoming => {
         socket.broadcast.emit('typing', incoming);
      })
-
-
 
     // Användare lämnar
 

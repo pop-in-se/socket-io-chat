@@ -97,6 +97,7 @@ p {
     
 }
 #inputContainer button {
+
     cursor: pointer;
     width: fit-content;
     background: rgb(247,253,255);
@@ -159,3 +160,14 @@ p {
     font-size: 0.85em;
     color: #7a7a7a;
 }
+=======
+
+#isTyping {
+    position: absolute;
+    top: -24px;
+    left: 24px;
+    font-style: italic;
+    font-size: 0.85em;
+    color: #7a7a7a;
+}
+

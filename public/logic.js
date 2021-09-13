@@ -57,7 +57,6 @@ socket.on('message', incoming => {
    /*  window.scrollTo(0, document.body.scrollHeight); */
 })
 
-
 //Användare skriver meddelande
 
 socket.on('typing', incoming =>  {
@@ -70,6 +69,17 @@ typeInput.addEventListener('keypress', function() {
         socket.emit('typing', { userName, message });
 })
 
+//Användare skriver meddelande
+
+socket.on('typing', incoming =>  {
+    isTyping.innerText = incoming.userName + ' is typing ...';
+})
+
+//keypress-lyssnare
+
+typeInput.addEventListener('keypress', function() {
+        socket.emit('typing', { userName, message });
+})
 
 //Användare ansluter
 
