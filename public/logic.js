@@ -111,5 +111,33 @@ function sendMessage() {
 }
 // message = chat
 
+var result = document.querySelector('.result');
+var Arr = ['/DadJoke','/Meme','/Gif']
+
+  // auto complete function
+ function autoComplete(Arr, Input) {
+    return Arr.filter(e =>e.toLowerCase().includes(Input.toLowerCase()));
+ }
+
+function getValue(val){
+    
+     // if no value
+     if(!val){
+       result.innerHTML='';
+       return
+     }
+  
+     // search goes here 
+     var data = autoComplete(Arr,val);
+    
+    
+    // append list data
+     var res = '<ul>';
+     data.forEach(e=>{
+        res += '<li>'+e+'</li>';
+     })
+     res += '</ul>';
+     result.innerHTML = res;
+ }
 
 

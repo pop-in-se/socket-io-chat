@@ -160,14 +160,13 @@ p {
     font-size: 0.85em;
     color: #7a7a7a;
 }
-=======
 
-#isTyping {
+/* #isTyping {
     position: absolute;
     top: -24px;
     left: 24px;
     font-style: italic;
     font-size: 0.85em;
     color: #7a7a7a;
-}
+} */
 

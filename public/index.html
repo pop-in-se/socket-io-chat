@@ -24,12 +24,13 @@
             </div>
             <div class="sendMessage">
                 <div id="inputContainer">
-                    <input id="message" autocomplete="off" type="text" autofocus/>
+                    <input  id="message" placeholder="Type here" onkeyup="getValue(this.value)" type="text" autofocus  />
                     <button onclick="sendMessage()"><u>S</u>end</button>
                 </div>
             </div>
         <div id="typingContainer">
             <span id="isTyping"></span>
+            <div class="result"></div>
         </div>
         </div>
     </div>
