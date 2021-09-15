@@ -47,12 +47,14 @@ socket.on('message', incoming => {
 })
 
 //Skicka när användare trycker enter
+
 var input = document.getElementById("message");
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
    event.preventDefault();
    document.getElementById("sendBtn").click();
   }
+
 });
 
 //Användare skriver meddelande
@@ -68,13 +70,14 @@ typeInput.addEventListener('keypress', function() {
 })
 
 //Användare ansluter
-
+var laudio = new Audio("assets/login.mp3");
 socket.on('user-connected', userName => {
     const list = document.getElementById("messages")
     let pItem = document.createElement("p")
     pItem.innerText = userName + " joined the chat"
     list.appendChild(pItem)
 })
+
 
 //Användare lämnar
 
@@ -86,16 +89,53 @@ socket.on('user-disconnected', userName => {
 })
 
 //Skicka meddelande, message = chatten
-
+var mraudio = new Audio("assets/mrec.mp3");
 function sendMessage() {
     const input = document.getElementById("message")
     const message = input.value
     input.value = ""
     socket.emit('message', { userName, message })
+    mraudio.play();
+}
+
+var mraudio = new Audio("assets/mrec.mp3");
+function sendSmile() {
+  const input = document.getElementById("message")
+  const message = "😊"
+  socket.emit('message', { userName, message })
+  mraudio.play();
+}
+var mraudio = new Audio("assets/mrec.mp3");
+function sendFlirt() {
+  const input = document.getElementById("message")
+  const message = "😉"
+  socket.emit('message', { userName, message })
+  mraudio.play();
+}
+var mraudio = new Audio("assets/mrec.mp3");
+function sendLol() {
+  const input = document.getElementById("message")
+  const message = "😃"
+  socket.emit('message', { userName, message })
+  mraudio.play();
+}
+var mraudio = new Audio("assets/mrec.mp3");
+function sendSad() {
+  const input = document.getElementById("message")
+  const message = "🙁"
+  socket.emit('message', { userName, message })
+  mraudio.play();
+}
+var mraudio = new Audio("assets/mrec.mp3");
+function sendAngry() {
+  const input = document.getElementById("message")
+  const message = "😡"
+  socket.emit('message', { userName, message })  
+  mraudio.play();
 }
 
 //Användare skickar nudge
-
+var naudio = new Audio('assets/nudge.mp3');
 nudgeButton.addEventListener('click', (e) => {
     e.preventDefault();
     socket.emit('nudge', userName )
@@ -104,15 +144,19 @@ nudgeButton.addEventListener('click', (e) => {
         const list = document.getElementById("messages")
         let h6Item = document.createElement("h6")
         h6Item.innerText = userName + " have just sent a nudge."
+        naudio.play();
         list.appendChild(h6Item)
         nudgeContainer.classList.add('is-nudged');
-        setTimeout(() => nudgeContainer.classList.remove('is-nudged'), 100)
+        
+  
+        setTimeout(() => nudgeContainer.classList.remove('is-nudged'), 200)
 })
 })
+
     
 //Autocomplete 
 
- async function autocomplete(inp, arr) {
+function autocomplete(inp, arr) {
     
     var currentFocus;
     
