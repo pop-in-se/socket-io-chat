@@ -11,26 +11,32 @@
 </head>
 <body>
         
-    <div class="window">
+    <div class="window" id="window">
         <div class="container">
+            <div class="top"> 
+                <img class="logo" src="./assets/msn-messenger-icon.png">
+                MSN Messenger clone
+            </div>
             <div class="messageContainer">
-                <ul id="messages" class="joke"></ul>
+                <ul id="messages"></ul>
             </div>
             <div id="emojiContainer">
-                <button id="emojibutton">😊</button>
-                <button id="emojibutton">😉</button>
-                <button id="emojibutton">🥴</button>
-                <button id="emojibutton" class="getJoke">🤡</button>
+                <button class="emojibutton autocomplete">😊</button>
+                <button class="emojibutton">😉</button>
+                <button class="emojibutton" id="nudge-button" title="Send a nudge">🥴</button>
+                <button class="emojibutton getJokeBtn" style="display: none;">🤡</button>
             </div>
             <div class="sendMessage">
                 <div id="inputContainer">
-                    <input  id="message" placeholder="Type here" onkeyup="getValue(this.value)" type="text" autofocus  />
-                    <button onclick="sendMessage()"><u>S</u>end</button>
+                    
+                    <input autocomplete="off" id="message" placeholder="Press / to add joke" type="text" autofocus  />
+                    <button onclick="sendMessage()" id="sendBtn"><u>S</u>end</button>
+                    
                 </div>
             </div>
         <div id="typingContainer">
             <span id="isTyping"></span>
-            <div class="result"></div>
+            <!-- <div class="autocomplete"></div> -->
         </div>
         </div>
     </div>

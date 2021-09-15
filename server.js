@@ -43,6 +43,12 @@ io.on('connection', (socket) => {
     socket.on("joke", incomingJoke => {
         io.emit('joke', incomingJoke )
     })
+
+    // Nudge
+
+    socket.on("nudge", userName => {
+        socket.broadcast.emit('nudge', userName )
+    })
     
     //Användare skriver meddelande
 
@@ -55,7 +61,6 @@ io.on('connection', (socket) => {
     socket.on("disconnect", () => {
         socket.broadcast.emit('user-disconnected', users[socket.id])
         delete users[socket.id]
-        /* console.log("User disconnected") */
     })
 })
 
