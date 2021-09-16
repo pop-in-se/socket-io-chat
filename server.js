@@ -10,18 +10,6 @@ app.use(express.static('public'))
 const users = {}
 
 
-/* app.get('/joke', function(req, res){
-    get('http://icanhazdadjoke.com/')
-    .then(function (response) {
-        res.send(response.data.joke)
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
-}); */
-
-
-
 io.on('connection', (socket) => {
     console.log("User connected")
     

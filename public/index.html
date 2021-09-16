@@ -6,42 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.io chat</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script defer src="./logic.js"></script>
+    <script defer src="./login.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
         
-    <div class="window" id="window">
+    <div class="windowLogin" id="window">
         <div class="container">
-            <div class="top"> 
-                <img class="logo" src="./assets/msn-messenger-icon.png">
-                MSN Messenger clone
+            <div class="topLogin"> 
+                <h4>Join the conversation</h4>
             </div>
-            <div class="messageContainer">
-                <ul id="messages"></ul>
-            </div>
-            <div id="emojiContainer">
-                <button class="emojibutton" onclick="sendSmile()" title="Send a smile">😊</button>
-                <button class="emojibutton" onclick="sendFlirt()" title="Send a flirt">😉</button>
-                <button class="emojibutton" onclick="sendLol()" title="Send LOL">😃</button>
-                <button class="emojibutton" onclick="sendSad()" title="Send a sad face">🙁</button>
-                <button class="emojibutton" onclick="sendAngry()" title="Send angry face">😡</button>
-                <button class="emojibutton" id="nudge-button" title="Send a nudge">🥴</button>
-                <button class="emojibutton getJokeBtn" style="display: none;">🤡</button>
-            </div>
+            
             <div class="sendMessage">
+                <img class="loginImg" src="./assets/msn-messenger-icon.png">
                 <div id="inputContainer">
-                    
-                    <input autocomplete="off" id="message" placeholder="Press / to add joke" type="text" autofocus  />
-                    <button onclick="sendMessage()" id="sendBtn"><u>S</u>end</button>
-                    
+                    <form action="messenger.html">
+                        <input autocomplete="off" name="userName" id="userName" placeholder="Please enter a username" oninvalid="setCustomValidity('Please enter a username')" oninput="setCustomValidity('')"type="text" autofocus  required/>
+                        <button type="submit" id="loginBtn"><u>J</u>oin</button>
+                    </form>
                 </div>
             </div>
-        <div id="typingContainer">
-            <span id="isTyping"></span>
-            <!-- <div class="autocomplete"></div> -->
-        </div>
+
         </div>
     </div>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+    crossorigin="anonymous">
+    </script>
 </body>
 </html>

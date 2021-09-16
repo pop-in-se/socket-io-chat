@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="./logic.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        
+    <div class="window" id="window">
+        <div class="container">
+            <div class="top"> 
+                <img class="logo" src="./assets/msn-messenger-icon.png">
+                <h5>MSN Messenger Clone</h5>
+                <div class="leaveBtn">
+                    <button onclick="window.location.href='index.html';"><u>L</u>eave</button>
+                </div>
+                
+            </div>
+            <div class="messageContainer">
+                <ul id="messages"></ul>
+            </div>
+            <div id="emojiContainer">
+                <button class="emojibutton" onclick="sendSmile()" title="Send a smile">😊</button>
+                <button class="emojibutton" onclick="sendFlirt()" title="Send a flirt">😉</button>
+                <button class="emojibutton" onclick="sendLol()" title="Send LOL">😃</button>
+                <button class="emojibutton" onclick="sendSad()" title="Send a sad face">🙁</button>
+                <button class="emojibutton" onclick="sendAngry()" title="Send angry face">😡</button>
+                <button class="emojibutton" id="nudge-button" title="Send a nudge">🥴</button>
+                <button class="emojibutton getJokeBtn" onClick="handleClick()" style="display: none;">🤡</button>
+            </div>
+            <div class="sendMessage">
+                <div id="inputContainer">
+                    
+                    <input autocomplete="off" id="message" placeholder="Press / to add joke" type="text" autofocus  />
+                    <button onclick="sendMessage()" id="sendBtn"><u>S</u>end</button>
+                    
+                </div>
+            </div>
+        <div id="typingContainer">
+            <span id="isTyping"></span>
+        </div>
+        </div>
+    </div>
+
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+    crossorigin="anonymous">
+    </script>
+
+</body>
+</html>

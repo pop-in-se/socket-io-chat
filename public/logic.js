@@ -3,24 +3,24 @@ const typeInput = document.getElementById('message')
 const textInput = document.getElementById('messages')
 const isTyping = document.getElementById('isTyping')
 const jokeButton = document.querySelector(".getJokeBtn");
-jokeButton.addEventListener("click", handleClick);
 const nudgeContainer = document.querySelector('#window');
 const nudgeButton = document.querySelector('#nudge-button');
+const messageScroll = document.querySelector(".messageContainer")
 
+const { userName } = Qs.parse(location.search, {
+  ignoreQueryPrefix: true,
+});
+socket.emit('new-user', userName)
 
-const userName = prompt("What is your name?"); 
-if (userName) { 
-    socket.emit('new-user', userName)
-} else {
-    location.reload();
+window.onbeforeunload = function(e) {
+  e.preventDefault();
 }
-
 
 async function handleClick() {
     const { joke } = await getJoke();
     const input = document.getElementById("message")
       input.value = joke
-      console.log(joke)
+      
       socket.emit('joke', { userName })
   }
 
@@ -35,6 +35,9 @@ async function getJoke() {
       return joke;
     }
 
+function scrollDown(){
+      messageScroll.scrollTop = messageScroll.scrollHeight;
+    }
 
 // Skicka meddelande. incoming = data. messages = ul
 
@@ -44,6 +47,7 @@ socket.on('message', incoming => {
     let listItem = document.createElement("li")
     listItem.innerHTML = '<h6>' + incoming.userName + " says: </h6>" + '<br/>' + '<h5>' + incoming.message + '</h5>'
     list.appendChild(listItem)
+    scrollDown()
 })
 
 //Skicka när användare trycker enter
@@ -76,7 +80,9 @@ socket.on('user-connected', userName => {
     let pItem = document.createElement("p")
     pItem.innerText = userName + " joined the chat"
     list.appendChild(pItem)
+    scrollDown()
 })
+
 
 
 //Användare lämnar
@@ -86,47 +92,49 @@ socket.on('user-disconnected', userName => {
     let pItem = document.createElement("p")
     pItem.innerText = userName + " left the chat"
     list.appendChild(pItem)
+    scrollDown()
 })
 
 //Skicka meddelande, message = chatten
-var mraudio = new Audio("assets/mrec.mp3");
+const mraudio = new Audio("assets/mrec.mp3");
 function sendMessage() {
     const input = document.getElementById("message")
     const message = input.value
     input.value = ""
     socket.emit('message', { userName, message })
     mraudio.play();
+    scrollDown()
 }
 
-var mraudio = new Audio("assets/mrec.mp3");
+
 function sendSmile() {
   const input = document.getElementById("message")
   const message = "😊"
   socket.emit('message', { userName, message })
   mraudio.play();
 }
-var mraudio = new Audio("assets/mrec.mp3");
+
 function sendFlirt() {
   const input = document.getElementById("message")
   const message = "😉"
   socket.emit('message', { userName, message })
   mraudio.play();
 }
-var mraudio = new Audio("assets/mrec.mp3");
+
 function sendLol() {
   const input = document.getElementById("message")
   const message = "😃"
   socket.emit('message', { userName, message })
   mraudio.play();
 }
-var mraudio = new Audio("assets/mrec.mp3");
+
 function sendSad() {
   const input = document.getElementById("message")
   const message = "🙁"
   socket.emit('message', { userName, message })
   mraudio.play();
 }
-var mraudio = new Audio("assets/mrec.mp3");
+
 function sendAngry() {
   const input = document.getElementById("message")
   const message = "😡"
@@ -141,15 +149,14 @@ nudgeButton.addEventListener('click', (e) => {
     socket.emit('nudge', userName )
     
     socket.on('nudge', userName => {
-        const list = document.getElementById("messages")
-        let h6Item = document.createElement("h6")
-        h6Item.innerText = userName + " have just sent a nudge."
-        naudio.play();
-        list.appendChild(h6Item)
-        nudgeContainer.classList.add('is-nudged');
-        
-  
-        setTimeout(() => nudgeContainer.classList.remove('is-nudged'), 200)
+      const list = document.getElementById("messages")
+      let h6Item = document.createElement("h6")
+      h6Item.innerText = userName + " have just sent a nudge."
+      naudio.play();
+      list.appendChild(h6Item)
+      nudgeContainer.classList.add('is-nudged');
+      scrollDown()
+      setTimeout(() => nudgeContainer.classList.remove('is-nudged'), 200)
 })
 })
 
@@ -159,7 +166,7 @@ nudgeButton.addEventListener('click', (e) => {
 function autocomplete(inp, arr) {
     
     var currentFocus;
-    
+
     inp.addEventListener("input", function(e) {
         var autocompleteContainer, matchingElement, i, val = this.value;
         
