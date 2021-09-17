@@ -15,9 +15,10 @@ Något i still med "localhost:3000" och skriv in samma adress i valfri webbläsa
 Vid fel
 ---------------------
 Se till att du har installerat NodeJs, om inte så hittar du den här https://nodejs.org/en/download/
+
 I terminalen skriv och installera följande moduler:
-npm install socket.io
-npm install --save-dev nodemon
+* npm install socket.io
+* npm install --save-dev nodemon
 --------------------
 BUGs
 --------------------
