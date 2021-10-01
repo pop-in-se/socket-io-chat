@@ -26,7 +26,7 @@ async function handleClick() {
 
 
 async function getJoke() {
-    const response = await fetch("http://icanhazdadjoke.com", {
+    const response = await fetch("https://icanhazdadjoke.com", {
         headers: {
           Accept: "application/json",
         },
