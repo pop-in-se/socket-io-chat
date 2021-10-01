@@ -22,6 +22,7 @@ Vid fel
 Se till att du har installerat NodeJs, om inte så hittar du den här https://nodejs.org/en/download/
 
 I terminalen skriv och installera följande moduler:
+* npm init
 * npm install socket.io
 * npm install --save-dev nodemon
 --------------------
